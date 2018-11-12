@@ -12,6 +12,7 @@ package com.study;
 
 public class test {
     public static void main(String[] args) {
-        Others.readBookMarksByWordOrWps("C:/Users/Cll/Desktop/test.doc","2");
+//       Others.readBookMarksByWordOrWps("C:/Users/Cll/Desktop/test.doc","2");
+        PoiGetResult.ReadWord("C:/Users/Cll/Desktop/test.doc");
     }
 }
