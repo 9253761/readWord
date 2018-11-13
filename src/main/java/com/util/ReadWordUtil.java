@@ -2,7 +2,7 @@
  * Copyright (c) 2016-2018 fafa.com.cn. All Rights Reserved.
  */
 
-package com.study;
+package com.util;
 
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.Paragraph;
@@ -12,16 +12,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * 这是用poi来得到word的目录结构
+ * 这是读取word内容的工具包
  *
  * @author Cll
- * @date 2018/11/12 10:51
+ * @date 2018/11/13 11:19
  * @since 1.0.0
  */
 
-public class PoiGetResult {
-
-
+public class ReadWordUtil {
     public static String ReadWord(String filePath) {
         StringBuffer stringBuffer = new StringBuffer();
         try {
@@ -38,8 +36,8 @@ public class PoiGetResult {
                 //获取段落大纲
                 int level = pph.getLvl();
                 if (level<=8){//标题等级从0开始，默认9级，9以上则把所有的文档输出
-                        stringBuffer.append(pph.text());
-                        System.out.println(stringBuffer.toString());
+                    stringBuffer.append(pph.text());
+                    System.out.println(stringBuffer.toString());
                 }
             }
         } catch (IOException e) {

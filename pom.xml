@@ -44,7 +44,7 @@
             <scope>system</scope>
             <systemPath>${basedir}/src/main/resources/lib/jacob.jar</systemPath>
         </dependency>
-                <!--用poi得到word的结构-->
+        <!--用poi得到word的结构-->
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -73,6 +73,7 @@
             <version>4.0.0</version>
         </dependency>
 
+        <!--这个包是poi操作word的-->
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -86,7 +87,13 @@
             <artifactId>poi-excelant</artifactId>
             <version>4.0.0</version>
         </dependency>
-
+        <!--连接数据库的驱动-->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.13</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -95,6 +102,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 

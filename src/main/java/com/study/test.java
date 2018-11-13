@@ -4,6 +4,8 @@
 
 package com.study;
 
+import com.util.ReadWordUtil;
+
 /**
  * @author Cll
  * @date 2018/11/11 19:23
@@ -12,7 +14,7 @@ package com.study;
 
 public class test {
     public static void main(String[] args) {
-//       Others.readBookMarksByWordOrWps("C:/Users/Cll/Desktop/test.doc","2");
-        PoiGetResult.ReadWord("C:/Users/Cll/Desktop/test.doc");
+        //Others.readBookMarksByWordOrWps("C:/Users/Cll/Desktop/test.doc","2");
+        ReadWordUtil.ReadWord("F:\\myselfTest\\readWord\\src\\main\\resources/test.doc");
     }
 }

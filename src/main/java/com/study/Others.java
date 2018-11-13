@@ -20,11 +20,11 @@ public class Others {
         Dispatch doc = null;
         try {
             //microsoft Office 方式
-            if ( "2".equals(strChoose) ) {
+            if ("2".equals(strChoose)) {
                 app = new ActiveXComponent("Word.Application");
             }
             //WPS 方式
-            if ( "3".equals(strChoose) ) {
+            if ("3".equals(strChoose)) {
                 app = new ActiveXComponent("KWPS.Application");
             }
             app.setProperty("Visible", new Variant(false));
@@ -38,27 +38,26 @@ public class Others {
             System.out.println("表格数" + tableCount);
             Dispatch table = null;
             //删除所有表格（删除第一个表格后，第二个表格会变成第一表格）
-            for (int i = 0 ; i < tableCount ; i++) {
+            for (int i = 0; i < tableCount; i++) {
                 table = Dispatch.call(tables, "Item", new Variant(1)).toDispatch();
                 Dispatch.call(table, "Delete");
             }
-
             // 获取大纲列表
             Dispatch paragraphs = Dispatch.get(doc, "Paragraphs").toDispatch();
             int count = Dispatch.get(paragraphs, "Count").getInt();//大纲数量
             //当前大纲等级层次
             int tempLevel = 0;
             //从前往后获取大纲
-            for (int i = 0 ; i <=count; i++) {
+            for (int i = 0; i <= count; i++) {
                 //当前大纲项
-                Dispatch paragraph = Dispatch.call(paragraphs, "Item", new Variant(i+1)).toDispatch();
+                Dispatch paragraph = Dispatch.call(paragraphs, "Item", new Variant(i + 1)).toDispatch();
                 //大纲等级
                 int level = Dispatch.get(paragraph, "OutlineLevel").getInt();
-                Dispatch paragraphRange  = Dispatch.get(paragraph, "Range").toDispatch();
+                Dispatch paragraphRange = Dispatch.get(paragraph, "Range").toDispatch();
                 //一般目录不会超过4级，4级往后是内容，可以跳过
-                if ( level <= 4 ) {
-                    if ( tempLevel == 0 ) {
-                        tempLevel = level ;
+                if (level <= 4) {
+                    if (tempLevel == 0) {
+                        tempLevel = level;
                     }
                     //标题编号
                     Dispatch listFormat = Dispatch.get(paragraphRange, "ListFormat").toDispatch();
@@ -69,16 +68,16 @@ public class Others {
                         System.out.println("没有listFormat属性的标题：" + Dispatch.get(paragraphRange, "Text").toString().replaceAll("\\\r|\\\f", ""));
                     }
                     //标题
-                    String title = Dispatch.get(paragraphRange, "Text").toString().replaceAll("\\\r|\\\f", "") ;
+                    String title = Dispatch.get(paragraphRange, "Text").toString().replaceAll("\\\r|\\\f", "");
                     //可能会存在一些为空的隐藏的大纲，text是为空的
                     if (title == null || ("").equals(title)) {
                         continue;
                     }
                     title = listString + title;
                     //索引的页码
-                    int page = Dispatch.call(paragraphRange, "information", 1).getInt() ;
+                    int page = Dispatch.call(paragraphRange, "information", 1).getInt();
 
-                    System.out.println(title + "…………"+page + "level:"+level);
+                    System.out.println(title + "…………" + page + "level:" + level);
                 }
             }
         } catch (Exception e) {
@@ -86,8 +85,8 @@ public class Others {
         } finally {
             try {
                 Dispatch.call(doc, "Close", false);
-                if (app != null){
-                    app.invoke("Quit", new Variant[] {});
+                if (app != null) {
+                    app.invoke("Quit", new Variant[]{});
                     app = null;
                 }
             } catch (Exception e2) {
